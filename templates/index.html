@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <h2>Welcome, {{session['username']}}!</h2>
+
+    <h3>Your Tasks</h3>
+    <ul>
+        {% for task in tasks %}
+        <li>{{ task['task'] }} - {{ task['status'] }}
+            <a href="/complete/{{ task['id'] }}">Mark complete</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add a new Task</h3>
+    <form method="POST" action="/add">
+        <input type="text" name="task" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <a href="/logout">Logout</a>
+</body>
+</html>
